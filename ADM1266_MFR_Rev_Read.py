@@ -150,13 +150,10 @@ if __name__ == '__main__':
 
         if read_type == 3 :
             address = input("Enter device address (e.g. 0x40): ")
-            # address = int(address, 16)
-            # address = ADM1266_Lib.ADM1266_Address.index(address)
+            address = int(address, 16)
             print("Reading MFR_Revision...\n")
             MFR_Rev = MFR_Rev_Read(int(address, 16), 8)
             time.sleep(0.1) # wait 100 ms
-
-
 
     # Close Connection to Aardvark ( Comment this section out for using other devices other than Aardvark)
     PMBus_I2C.Close_Aardvark()

@@ -22,7 +22,14 @@ def PMBus_Write(device_address, write_data, stop = True):
        
     if num != len(write_data):
         raise Exception('Failed to write i2c device @{0:02X}.'.format(device_address))
-
+        
+def PMBus_BlockWR(dev_addr, write_data, read_len):
+    a = array('B')
+    b = array('B')
+    for i in write_data:
+        a.append(i)
+    (status, num_written, b, num_read) = aardvark_py.aa_i2c_write_read(Aardvark_Handle, dev_addr, aardvark_py.AA_I2C_NO_FLAGS, a, read_len)
+    return b
 
 def PMBus_Group_Write(ADM1266_Address, write_data):
     a = array('B')
